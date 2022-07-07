@@ -39,10 +39,10 @@ db.sequelize = sequelize
 db.products = require('./productModel.js')(sequelize, DataTypes)
 db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
 
-// db.sequelize.sync({alter:true})
-//  .then(() => {
-//      console.log('re sync applied successfully!')
-// })
+db.sequelize.sync({alter:true})
+ .then(() => {
+     console.log('re sync applied successfully!')
+})
 
 db.products.hasMany(db.reviews, {
     foreignKey: 'product_id',
