@@ -21,10 +21,10 @@ const product = await Product.create(info)
 const getAllProducts = async (req, res) => {
 
     let products = await Product.findAll({})
+
     res.status(200).send(products)
 
 }
-
 
 
 const getOneProduct = async (req, res) => {
