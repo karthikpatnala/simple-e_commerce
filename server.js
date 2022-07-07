@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 const router = require('./routes.js')
 //console.log(router);
 app.use('/api', router)
-
+ 
 
 const PORT = process.env.PORT || 3000
 

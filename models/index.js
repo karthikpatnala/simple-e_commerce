@@ -38,11 +38,13 @@ db.sequelize = sequelize
 
 db.products = require('./productModel.js')(sequelize, DataTypes)
 db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
+db.orders = require('./orders.js')(sequelize, DataTypes)
+db.customers = require('./customers.js')(sequelize, DataTypes)
 
-db.sequelize.sync({alter:true})
- .then(() => {
-     console.log('re sync applied successfully!')
-})
+// db.sequelize.sync({alter:true})
+//  .then(() => {
+//      console.log('re sync applied successfully!')
+// })
 
 db.products.hasMany(db.reviews, {
     foreignKey: 'product_id',
@@ -54,4 +56,22 @@ db.reviews.belongsTo(db.products, {
     as: 'product'
 })
 
+db.customers.hasMany(db.orders, {
+    foreignKey: 'customer_id',
+    as: 'orders'
+})
+db.orders.belongsTo(db.customers,{
+    foreignKey: 'customer_id',
+    as: 'customers'
+
+})
+
+db.orders.hasMany(db.products, {
+    foreignKey: 'order_id',
+    as: 'product'
+})
+db.products.belongsTo(db.orders, {
+ foreignKey: 'order_id',
+ as: 'orders'
+})
 module.exports = {db,sequelize}
