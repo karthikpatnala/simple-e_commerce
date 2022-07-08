@@ -19,8 +19,11 @@ const product = await Product.create(info)
 
 
 const getAllProducts = async (req, res) => {
-
-    let products = await Product.findAll({})
+   console.log(req.query.limit)
+    let products = await Product.findAll({
+        limit: parseInt(req.query.limit),
+        offset: parseInt(req.query.offset)
+    })
 
     res.status(200).send(products)
 
