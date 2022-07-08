@@ -5,7 +5,10 @@ const Order =db.orders;
 //apis
 const getAllCustomers = async (req, res) => {
 
-    let customerList = await customer.findAll()
+    let customerList = await customer.findAll({
+        limit: parseInt(req.query.limit),
+        offset: parseInt(req.query.offset)
+    })
 
     res.status(200).send(customerList)
 
