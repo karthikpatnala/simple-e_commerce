@@ -4,7 +4,10 @@ const order = db.orders;
 //apis
 const getAllOrders = async (req, res) => {
 
-   let ordersList = await order.findAll()
+   let ordersList = await order.findAll({
+      limit: parseInt(req.query.limit),
+        offset: parseInt(req.query.offset)
+   })
 
    res.status(200).send(ordersList)
 

@@ -20,7 +20,10 @@ const addReview = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
 
-    const reviews = await Review.findAll()
+    const reviews = await Review.findAll({
+        limit: parseInt(req.query.limit),
+        offset: parseInt(req.query.offset)
+})
     res.status(200).send(reviews)
 
 }
